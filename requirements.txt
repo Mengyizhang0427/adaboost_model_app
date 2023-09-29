@@ -1,5 +1,5 @@
 streamlit==1.27.0
 pandas
-joblib
+joblib==1.2.0
 category_encoders
-shap
+shap==0.42.1
