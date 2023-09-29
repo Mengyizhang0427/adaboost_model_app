@@ -7,11 +7,10 @@ Created on Wed Sep 27 11:06:55 2023
 
 import streamlit as st
 import pandas as pd
-import joblib
+import pickle
 import category_encoders as ce
 import shap
-import warnings
-warnings.filterwarnings('ignore')
+
 
 
 # Title
@@ -71,15 +70,17 @@ else:
     gender_0=0
     gender_1=1  
 age=st.sidebar.number_input("Enter age")
-
+with open('Adaboost+NearMiss.pkl', 'rb') as f:
+    clf = pickle.load(f)
+with open('scaler_params.pkl', 'rb') as f:
+    scaler = pickle.load(f)
+with open('explainer.pkl', 'rb') as f:
+    explainer = pickle.load(f)
 
 # If button is pressed
 if st.button("Submit"):
     
     # Unpickle classifier
-    clf = joblib.load("Adaboost+NearMiss.pkl")
-    scaler=joblib.load("scaler_params.pkl")
-    explainer=joblib.load("explainer.pkl")
     # Store inputs into dataframe
     columns = ['Kidney_0','Kidney_1', 'Brain_0','Brain_1', 'Circulation_0','Circulation_1', 'Respiratory_0','Respiratory_1',
                'ast', 'alt',

@@ -1,5 +1,5 @@
 streamlit==1.27.0
 pandas
-joblib==1.2.0
+pickle
 category_encoders
 shap==0.42.1
