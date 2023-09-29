@@ -70,10 +70,17 @@ else:
     gender_0=0
     gender_1=1  
 age=st.sidebar.number_input("Enter age")
-
-import os
-root_path = os.getcwd()
-st.text(f"项目根目录路径：{root_path}")
+file_path='Adaboost+NearMiss.pkl'
+try:
+    with open(file_path, 'rb') as f:
+        loaded_data = pickle.load(f)
+    # 处理读取到的数据
+    st.write("成功读取文件:", file_path)
+    st.write(loaded_data)
+except FileNotFoundError:
+    st.error("文件不存在: " + file_path)
+except Exception as e:
+    st.error("读取文件时出现错误: " + str(e))
 
 with open('/mount/src/adaboost_model_app/Adaboost+NearMiss.pkl', 'rb') as f:
     clf = pickle.load(f)
