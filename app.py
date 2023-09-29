@@ -70,6 +70,11 @@ else:
     gender_0=0
     gender_1=1  
 age=st.sidebar.number_input("Enter age")
+
+import os
+root_path = os.getcwd()
+st.text("项目根目录路径：", root_path)
+
 with open('/mount/src/adaboost_model_app/Adaboost+NearMiss.pkl', 'rb') as f:
     clf = pickle.load(f)
 with open('/mount/src/adaboost_model_app/scaler_params.pkl', 'rb') as f:
