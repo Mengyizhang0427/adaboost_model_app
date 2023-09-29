@@ -73,7 +73,7 @@ age=st.sidebar.number_input("Enter age")
 
 import os
 root_path = os.getcwd()
-st.text("项目根目录路径：", root_path)
+st.text(f"项目根目录路径：{root_path}")
 
 with open('/mount/src/adaboost_model_app/Adaboost+NearMiss.pkl', 'rb') as f:
     clf = pickle.load(f)
