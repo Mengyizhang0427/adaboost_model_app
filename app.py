@@ -19,6 +19,7 @@ st.header("Adaboost+NearMiss ACLF death prediction model")
 
 #input
 Kidney=st.sidebar.selectbox("Whether Kidney failure",("YES","NO"))
+st.write(f"Kidney:{Kidney}")
 if Kidney=="YES":
     Kidney_0=1
     Kidney_1=0
