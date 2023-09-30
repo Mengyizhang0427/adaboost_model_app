@@ -80,34 +80,34 @@ with open('/mount/src/adaboost_model_app/scaler_params.pkl', 'rb') as f:
     scaler = pickle.load(f)
 with open('/mount/src/adaboost_model_app/explainer.pkl', 'rb') as f:
     explainer = pickle.load(f)
-columns = ['Kidney_0','Kidney_1', 'Brain_0','Brain_1', 'Circulation_0','Circulation_1', 'Respiratory_0','Respiratory_1',
-           'ast', 'alt',
-       'bilirubin', 'INR', 'WBC', 'platelet_count', 'creatinine', 'sodium',
-       'albumin', 'heart_rate', 'sbp', 'dbp', 'mbp', 'resp_rate',
-       'temperature', 'spo2', 'glucose', 'gender_0','gender_1', 'age']
-X = pd.DataFrame([[Kidney_0,Kidney_1, Brain_0,Brain_1, Circulation_0,Circulation_1, 
-                   Respiratory_0,Respiratory_1, ast, alt,
-       bilirubin, INR, WBC, platelet_count, creatinine, sodium,
-       albumin, heart_rate, sbp, dbp, mbp, resp_rate,
-       temperature, spo2, glucose, gender_0,gender_1, age]], 
-                 columns = ['Kidney_0','Kidney_1', 'Brain_0','Brain_1', 'Circulation_0','Circulation_1', 'Respiratory_0','Respiratory_1',
-                            'ast', 'alt',
-                        'bilirubin', 'INR', 'WBC', 'platelet_count', 'creatinine', 'sodium',
-                        'albumin', 'heart_rate', 'sbp', 'dbp', 'mbp', 'resp_rate',
-                        'temperature', 'spo2', 'glucose', 'gender_0','gender_1', 'age'])
+
 
 # If button is pressed
 if st.button("Submit"):
     
     # Unpickle classifier
     # Store inputs into dataframe
-    
+    columns = ['Kidney_0','Kidney_1', 'Brain_0','Brain_1', 'Circulation_0','Circulation_1', 'Respiratory_0','Respiratory_1',
+               'ast', 'alt',
+           'bilirubin', 'INR', 'WBC', 'platelet_count', 'creatinine', 'sodium',
+           'albumin', 'heart_rate', 'sbp', 'dbp', 'mbp', 'resp_rate',
+           'temperature', 'spo2', 'glucose', 'gender_0','gender_1', 'age']
+    X = pd.DataFrame([[Kidney_0,Kidney_1, Brain_0,Brain_1, Circulation_0,Circulation_1, 
+                       Respiratory_0,Respiratory_1, ast, alt,
+           bilirubin, INR, WBC, platelet_count, creatinine, sodium,
+           albumin, heart_rate, sbp, dbp, mbp, resp_rate,
+           temperature, spo2, glucose, gender_0,gender_1, age]], 
+                     columns = ['Kidney_0','Kidney_1', 'Brain_0','Brain_1', 'Circulation_0','Circulation_1', 'Respiratory_0','Respiratory_1',
+                                'ast', 'alt',
+                            'bilirubin', 'INR', 'WBC', 'platelet_count', 'creatinine', 'sodium',
+                            'albumin', 'heart_rate', 'sbp', 'dbp', 'mbp', 'resp_rate',
+                            'temperature', 'spo2', 'glucose', 'gender_0','gender_1', 'age'])
     X = X.replace(["YES", "NO"], [1, 0])
     X = X.replace(["M", "F"], [0, 1])
     X = scaler.fit_transform(X)
     X= pd.DataFrame(X,columns=columns)
+    st.dataframe(X)
     # Get prediction
-    st.table(X[0:8])
     prediction = clf.predict(X)
     pred=clf.predict_proba(X)[0][1]
     shap_values2 = explainer(X)
