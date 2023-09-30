@@ -19,7 +19,7 @@ st.header("Adaboost+NearMiss ACLF death prediction model")
 
 #input
 Kidney=st.sidebar.selectbox("Whether Kidney failure",("YES","NO"))
-st.write(f"Kidney:{Kidney}")
+st.write('Kidney:',Kidney)
 if Kidney=="YES":
     Kidney_0=1
     Kidney_1=0
@@ -103,6 +103,7 @@ if st.button("Submit"):
                             'bilirubin', 'INR', 'WBC', 'platelet_count', 'creatinine', 'sodium',
                             'albumin', 'heart_rate', 'sbp', 'dbp', 'mbp', 'resp_rate',
                             'temperature', 'spo2', 'glucose', 'gender_0','gender_1', 'age'])
+    st.dataframe(X)
     X = scaler.fit_transform(X)
     X= pd.DataFrame(X,columns=columns)
     st.dataframe(X)
