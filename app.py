@@ -77,8 +77,10 @@ age=st.sidebar.number_input("Enter age")
 
 with open('/mount/src/adaboost_model_app/Adaboost+NearMiss.pkl', 'rb') as f:
     clf = pickle.load(f)
-with open('/mount/src/adaboost_model_app/scaler_params.pkl', 'rb') as f:
-    scaler = pickle.load(f)
+with open('/mount/src/adaboost_model_app/data_max.pkl', 'rb') as f:
+    data_max = pickle.load(f)
+with open('/mount/src/adaboost_model_app/data_min.pkl', 'rb') as f:
+    data_min = pickle.load(f)
 with open('/mount/src/adaboost_model_app/explainer.pkl', 'rb') as f:
     explainer = pickle.load(f)
 
@@ -104,8 +106,7 @@ if st.button("Submit"):
                             'albumin', 'heart_rate', 'sbp', 'dbp', 'mbp', 'resp_rate',
                             'temperature', 'spo2', 'glucose', 'gender_0','gender_1', 'age'])
     st.dataframe(X)
-    X = scaler.fit_transform(X)
-    X= pd.DataFrame(X,columns=columns)
+    X = (X-data_max)/(data_max-data_min)
     st.dataframe(X)
     # Get prediction
     prediction = clf.predict(X)
