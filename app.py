@@ -106,15 +106,12 @@ if st.button("Submit"):
     X = scaler.fit_transform(X)
     X= pd.DataFrame(X,columns=columns)
     # Get prediction
+    st.table(X)
     prediction = clf.predict(X)
     pred=clf.predict_proba(X)[0][1]
     shap_values2 = explainer(X)
     
     # Output prediction
-    if prediction==1:
-        st.text("The predicted outcome of the patient is death.")
-    else:
-        st.text("The predicted outcome of the patient is survival.")
     
     st.text(f"The probability of death of the patient is {pred}.")
     st.set_option('deprecation.showPyplotGlobalUse', False)
