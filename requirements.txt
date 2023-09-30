@@ -3,4 +3,4 @@ pandas
 category_encoders
 shap==0.42.1
 numpy
-scikit-learn
+scikit-learn==1.0.2
