@@ -106,7 +106,7 @@ if st.button("Submit"):
     X = scaler.fit_transform(X)
     X= pd.DataFrame(X,columns=columns)
     # Get prediction
-    st.table(X)
+    st.table(X[0:8])
     prediction = clf.predict(X)
     pred=clf.predict_proba(X)[0][1]
     shap_values2 = explainer(X)
