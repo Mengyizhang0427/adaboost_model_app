@@ -4,3 +4,4 @@ category_encoders
 shap==0.42.1
 numpy
 scikit-learn==1.0.2
+matplotlib

@@ -72,46 +72,7 @@ else:
     gender_1=1  
 age=st.sidebar.number_input("Enter age")
 
-file_path='Adaboost+NearMiss.pkl'
 
-try:
-    with open(file_path, 'rb') as f:
-        loaded_data = pickle.load(f)
-    
-    # 调整dtype
-    correct_dtype = np.dtype([
-        ('left_child', '<i8'),
-        ('right_child', '<i8'),
-        ('feature', '<i8'),
-        ('threshold', '<f8'),
-        ('impurity', '<f8'),
-        ('n_node_samples', '<i8'),
-        ('weighted_n_node_samples', '<f8'),
-        ('missing_go_to_left', 'u1')
-    ])
-    
-    adjusted_data = loaded_data.astype(correct_dtype)
-    
-    # 处理调整后的数据
-    st.write("成功读取文件:", file_path)
-    st.write(adjusted_data)
-    
-except FileNotFoundError:
-    st.error("文件不存在: " + file_path)
-except Exception as e:
-    st.error("读取文件时出现错误: " + str(e))
-
-file_path='Adaboost+NearMiss.pkl'
-try:
-    with open(file_path, 'rb') as f:
-        loaded_data = pickle.load(f)
-    # 处理读取到的数据
-    st.write("成功读取文件:", file_path)
-    st.write(loaded_data)
-except FileNotFoundError:
-    st.error("文件不存在: " + file_path)
-except Exception as e:
-    st.error("读取文件时出现错误: " + str(e))
 
 with open('/mount/src/adaboost_model_app/Adaboost+NearMiss.pkl', 'rb') as f:
     clf = pickle.load(f)
