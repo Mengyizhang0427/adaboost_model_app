@@ -103,8 +103,6 @@ if st.button("Submit"):
                             'bilirubin', 'INR', 'WBC', 'platelet_count', 'creatinine', 'sodium',
                             'albumin', 'heart_rate', 'sbp', 'dbp', 'mbp', 'resp_rate',
                             'temperature', 'spo2', 'glucose', 'gender_0','gender_1', 'age'])
-    X = X.replace(["YES", "NO"], [1, 0])
-    X = X.replace(["M", "F"], [0, 1])
     X = scaler.fit_transform(X)
     X= pd.DataFrame(X,columns=columns)
     st.dataframe(X)
