@@ -75,13 +75,13 @@ age=st.sidebar.number_input("Enter age")
 
 
 
-with open('/mount/src/adaboost_model_app/Adaboost+NearMiss.pkl', 'rb') as f:
+with open('Adaboost+NearMiss.pkl', 'rb') as f:
     clf = pickle.load(f)
-with open('/mount/src/adaboost_model_app/data_max.pkl', 'rb') as f:
+with open('data_max.pkl', 'rb') as f:
     data_max = pickle.load(f)
-with open('/mount/src/adaboost_model_app/data_min.pkl', 'rb') as f:
+with open('data_min.pkl', 'rb') as f:
     data_min = pickle.load(f)
-with open('/mount/src/adaboost_model_app/explainer.pkl', 'rb') as f:
+with open('explainer.pkl', 'rb') as f:
     explainer = pickle.load(f)
 
 
